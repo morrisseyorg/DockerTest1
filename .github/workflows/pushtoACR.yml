@@ -28,11 +28,11 @@ jobs:
           with:
             image-name: ${{ env.IMAGE_NAME }}
 
-        - run: docker push ${{ env.IMAGE_NAME }}
-
         - name: 'Build and push image'
           uses: azure/docker-login@v1
           with:
             login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             username: ${{ secrets.REGISTRY_USERNAME }}
             password: ${{ secrets.REGISTRY_PASSWORD }}
+
+        - run: docker push ${{ env.IMAGE_NAME }}
